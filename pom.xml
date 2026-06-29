@@ -1,0 +1,34 @@
+package com.example.lab1.controller;
+
+import com.example.lab1.model.Equipment;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/equipment")
+public class EquipmentController {
+
+    private Equipment stub() {
+        return new Equipment(1L, "Audio System", "Professional audio system for conferences");
+    }
+
+    @PostMapping
+    public ResponseEntity<Equipment> create() {
+        return ResponseEntity.ok(stub());
+    }
+
+    @GetMapping
+    public ResponseEntity<Equipment> getAll() {
+        return ResponseEntity.ok(stub());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Equipment> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(stub());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        return ResponseEntity.ok("Equipment deleted");
+    }
+}

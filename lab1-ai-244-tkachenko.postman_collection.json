@@ -1,0 +1,48 @@
+package com.example.lab1.controller;
+
+import com.example.lab1.model.Event;
+import com.example.lab1.model.EventStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+
+@RestController
+@RequestMapping("/events")
+public class EventController {
+
+    private Event stub() {
+        return new Event(1L, "Business Forum", LocalDateTime.now(), LocalDateTime.now().plusHours(4), EventStatus.PLANNED);
+    }
+
+    @PostMapping
+    public ResponseEntity<Event> create() {
+        return ResponseEntity.ok(stub());
+    }
+
+    @GetMapping
+    public ResponseEntity<Event> getAll() {
+        return ResponseEntity.ok(stub());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Event> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(stub());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> update(@PathVariable Long id) {
+        return ResponseEntity.ok(stub());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> cancel(@PathVariable Long id) {
+        return ResponseEntity.ok("Event cancelled");
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<Event> getActive() {
+        Event event = new Event(2L, "Active Meeting", LocalDateTime.now(), LocalDateTime.now().plusHours(2), EventStatus.ACTIVE);
+        return ResponseEntity.ok(event);
+    }
+}
